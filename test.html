@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      const user2 = {
+        name: "ahmet",
+        email: "ahmet@a.com",
+        address: {
+          city: "Ankara",
+          postcode: "06333",
+        },
+        age: 40,
+        url: "http://aaa.com",
+        getName: function () {
+          console.log("this: ", this);
+          this == user2;
+        },
+        getNameArrow: () => {
+          console.log("this: ", this);
+        },
+      };
+
+      user2.getName();
+      user2.getNameArrow();
+    </script>
+  </head>
+  <body></body>
+</html>

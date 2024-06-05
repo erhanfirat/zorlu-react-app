@@ -1,0 +1,9 @@
+npm i -D tailwindcss postcss autoprefixer
+
+vite.config.js
+
+  css: {
+      postcss: {
+        plugins: [tailwindcss, autoprefixer],
+      },
+    },
