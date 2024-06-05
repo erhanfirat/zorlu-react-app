@@ -54,6 +54,10 @@ form > div > label {
   flex-basis: 40%;
 }
 
+p.form-error {
+  @apply text-red-700 text-sm pb-4;
+}
+
 @media screen and (max-width: 580px) {
   .head {
     @apply flex-col items-center;
@@ -62,4 +66,9 @@ form > div > label {
   header > nav {
     @apply flex-col items-center gap-2;
   }
+}
+
+.dark {
+  background-color: rgb(59, 59, 59);
+  color: antiquewhite;
 }
