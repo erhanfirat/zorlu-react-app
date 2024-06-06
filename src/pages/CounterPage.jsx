@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Counter } from "../components/Counter";
 import { Button } from "../components/Button";
+import { CounterWithReducer } from "../components/CounterWithReducer";
 
 export const CounterPage = () => {
   const [show, setShow] = useState(true);
@@ -12,10 +13,10 @@ export const CounterPage = () => {
         <Button onClick={() => setShow(!show)}>TOGGLE COUNTER</Button>
       </h2>
       <hr />
-      {show && <Counter />}
-      {/* component did mount! - component will unmount */}
+      {/* {show && <Counter />}
       <hr />
-      <Counter hide={!show} />
+      <Counter hide={!show} /> */}
+      <CounterWithReducer />
     </div>
   );
 };

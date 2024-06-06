@@ -1,31 +1,40 @@
-import { useEffect, useState } from "react";
+import { useEffect, useReducer, useState } from "react";
 import { Button } from "./Button";
 
 let sayac = 1;
 
-export const Counter = ({ hide = false }) => {
-  // STATES
-  const [count, setCount] = useState(0);
-  const [count2, setCount2] = useState(0);
+const countReducer = (state, action) => {
+  switch (action.type) {
+    case "INCREASE":
+      return state + 1;
+    case "DECREASE":
+      return state - 1;
+    case "PLUS":
+      if (!isNaN(action.payload)) {
+        return state + action.payload;
+      } else {
+        return state;
+      }
+    default:
+      return state;
+  }
+};
 
-  const [user, setUser] = useState({ name: "", email: "" });
+export const CounterWithReducer = ({ hide = false }) => {
+  // STATES
+  const [count, dispatchCount] = useReducer(countReducer, 0);
 
   // METHODS
 
-  const updateName = (newName) => {
-    setUser({ ...user, name: newName });
-  };
-
   const arttir = () => {
     // console.log("count ", count);
-    setCount((prevValue) => prevValue + 1);
-    setCount((prevValue) => prevValue + 1);
-    setCount((prevValue) => prevValue + 1);
+    dispatchCount({ type: "INCREASE" });
+
     // console.log("count ", count);
   };
 
   const azalt = () => {
-    setCount(count - 1);
+    dispatchCount({ type: "DECREASE" });
   };
 
   const sayacArttir = () => {
@@ -80,35 +89,6 @@ export const Counter = ({ hide = false }) => {
           Azalt
         </Button>
       </div>
-      <br />
-      Count 2: {count2}
-      <div>
-        <Button className="btn" onClick={() => setCount2(count2 + 1)}>
-          Arttır
-        </Button>
-        <Button className="btn" onClick={() => setCount2(count2 - 1)}>
-          Azalt
-        </Button>
-      </div>
     </div>
   );
 };
-
-const countReducer = (state, action) => {
-  switch (action.type) {
-    case "INCREASE":
-      return state + 1;
-    case "DECREASE":
-      return state - 1;
-    case "PLUS":
-      return state + action.payload;
-    default:
-      return state;
-  }
-};
-
-let sayac1 = countReducer(0, { type: "INCREASE" });
-console.log("sayac1 > ", sayac1); // 1
-
-sayac1 = countReducer(sayac1, { type: "PLUS", payload: 5 });
-console.log("sayac1 > ", sayac1); // 6

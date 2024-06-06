@@ -1,13 +1,19 @@
-export const UserPanel = ({ user }) => {
+import { Link, useHistory } from "react-router-dom";
+import { Button } from "./Button";
+
+export const UserPanel = ({ user, logout }) => {
   return (
     <>
-      {user ? (
-        <div className="user-info">
-          <p>{user.name}</p>
-          <p>{user.email}</p>
+      {user.email ? (
+        <div className="flex">
+          <div className="user-info">
+            <p>{user.name}</p>
+            <p>{user.email}</p>
+          </div>
+          <Button onClick={logout}>Logout</Button>
         </div>
       ) : (
-        <a href="">Login</a>
+        <Link to="/login">Login</Link>
       )}
     </>
   );

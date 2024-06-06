@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { Button } from "../components/Button";
 import { UserPanel } from "../components/UserPanel";
 import { useInput } from "../hooks/useInput";
+import { Link } from "react-router-dom";
 
 export const Header = ({
   title,
@@ -11,6 +12,7 @@ export const Header = ({
   moveToParent,
   theme,
   setTheme,
+  logout,
 }) => {
   const [searchText, searchChangeHandler] = useInput("");
   const [subscribe, subscribeChangeHandler] = useInput("");
@@ -30,9 +32,10 @@ export const Header = ({
     <header className="head">
       <div>MyReact App</div>
       <nav>
-        <a href="#">Ana Sayfa</a>
-        <a href="#">Ürünler</a>
-        <a href="#">Login</a>
+        <Link to="/">Ana Sayfa</Link>
+        <Link to="/products">Ürünler</Link>
+        <Link to="/counter">Sayaç</Link>
+        <Link to="/personel">Personel</Link>
       </nav>
       <div>
         <input type="text" value={searchText} onChange={searchChangeHandler} />
@@ -43,7 +46,7 @@ export const Header = ({
           {theme === "light" ? "Dark" : "Light"}
         </Button>
       </div>
-      <UserPanel user={user} />
+      <UserPanel user={user} logout={logout} />
     </header>
   );
 };

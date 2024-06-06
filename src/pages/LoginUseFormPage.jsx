@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Button } from "../components/Button";
 import { useForm } from "react-hook-form";
 import axios from "axios";
+import { useLocation, useHistory } from "react-router-dom";
 
 const formDataInitial = {
   email: "",
@@ -10,7 +11,7 @@ const formDataInitial = {
   age: 0,
 };
 
-export const LoginUseFormPage = () => {
+export const LoginUseFormPage = ({ setUser }) => {
   const {
     register,
     handleSubmit,
@@ -21,6 +22,11 @@ export const LoginUseFormPage = () => {
     },
     mode: "all",
   });
+
+  const location = useLocation();
+  const history = useHistory();
+
+  console.log("Login page location: ", location);
 
   const reset = () => {};
 
@@ -38,6 +44,12 @@ export const LoginUseFormPage = () => {
       .then((res) => {
         console.log("***** logged in ***** ", res.data);
         localStorage.setItem("token", res.data.token);
+        setUser(res.data);
+        if (location?.state?.referrer) {
+          history.push(location.state.referrer);
+        } else {
+          history.push("/");
+        }
       });
   };
 

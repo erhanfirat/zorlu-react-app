@@ -10,17 +10,30 @@ import { PageBody } from "./layout/PageBody";
 import "./App.css";
 import { useLocalStorage } from "./hooks/useLocalStorage";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
 
 function App() {
   const [count, setCount] = useState(0);
   const [user, setUser] = useState({ name: "Anonim", email: null });
   const [theme, setTheme] = useLocalStorage("theme", "light");
+  const history = useHistory();
 
   const moveToParent = (val) => {
     console.warn("Child componentten gelen value: ", val);
   };
 
   const login = (res) => setUser(res.data);
+
+  const logout = () => {
+    // ??
+    // remove token
+    // yönlendirme login veya anasayfa
+    // user state i resetlenmeli
+    localStorage.removeItem("token");
+    setUser({ name: "Anonim", email: null });
+
+    history.push("/");
+  };
 
   useEffect(() => {
     // uygulama başarıyla yüklendi!
@@ -51,8 +64,9 @@ function App() {
         moveToParent={moveToParent}
         theme={theme}
         setTheme={setTheme}
+        logout={logout}
       />
-      <PageBody />
+      <PageBody user={user} setUser={setUser} />
       <Footer />
     </div>
   );

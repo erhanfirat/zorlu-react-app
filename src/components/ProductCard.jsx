@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import { Button } from "./Button";
 
 // key ve children ayrı prop olarak kullanılmamalı
@@ -8,7 +9,12 @@ export const ProductCard = ({ product }) => {
       <h3>{product.name}</h3>
       <p className="grow">{product.description}</p>
       <p className="price">{product.price}</p>
-      <Button>İncele</Button>
+      <Link
+        className="btn"
+        to={`/products/detail/${product.name}/${product.id}`}
+      >
+        İncele
+      </Link>
       <Button className="orange">Satın Al</Button>
     </div>
   );
