@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import React, { Suspense, useContext } from "react";
 import {
   Redirect,
   Route,
@@ -11,11 +11,16 @@ import { ProductDetailPage } from "../pages/ProductDetailPage";
 import { ProductsPage } from "../pages/ProductsPage";
 import { CounterPage } from "../pages/CounterPage";
 import { PersonelListesi } from "../pages/PersonelListesi";
+import { myContext } from "../context/myContext";
+import { ProductsPageTanStack } from "../pages/ProductsPageTanStack";
+import { ProductsPageTanStackCRUD } from "../pages/ProductsPageTanStackCRUD";
 
 // const ProductsPage = React.lazy(() => import("./../pages/ProductsPage"));
 // const CounterPage = React.lazy(() => import("./../pages/CounterPage"));
 
-export const PageBody = ({ user, setUser }) => {
+export const PageBody = () => {
+  const { user } = useContext(myContext);
+
   return (
     <div className="page-content">
       {/* Ana Sayfa Componenti */}
@@ -26,7 +31,7 @@ export const PageBody = ({ user, setUser }) => {
             <HomePage />
           </Route>
           <Route path="/login" exact>
-            <LoginUseFormPage setUser={setUser} />
+            <LoginUseFormPage />
           </Route>
           <Route path="/counter">
             <CounterPage />
@@ -35,13 +40,12 @@ export const PageBody = ({ user, setUser }) => {
             <PersonelListesi />
           </Route>
           <Route path="/products" exact>
-            <ProductsPage />
+            <ProductsPageTanStackCRUD />
           </Route>
           <Route
             path="/products/detail/:productName/:productId"
             exact
             render={(location) => {
-              console.log("location", location);
               if (user?.email) {
                 return <ProductDetailPage />;
               }
@@ -57,6 +61,7 @@ export const PageBody = ({ user, setUser }) => {
               );
             }}
           ></Route>
+
           <Route path="*">
             <h2>404 - Sayfa Bulunamadı</h2>
           </Route>

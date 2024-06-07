@@ -1,12 +1,15 @@
+import { useSelector } from "react-redux";
+import { Navigation } from "../components/Navigaion";
+import { Motivation } from "../components/Motivation";
+
 export const Footer = () => {
+  const title = useSelector((s) => s.global.title);
+
   return (
     <footer className="head">
-      <div>MyReact App Footer</div>
-      <nav>
-        <a href="#">Ana Sayfa</a>
-        <a href="#">Ürünler</a>
-        <a href="#">Login</a>
-      </nav>
+      <div>{title} Footer</div>
+      <Motivation />
+      <Navigation />
     </footer>
   );
 };

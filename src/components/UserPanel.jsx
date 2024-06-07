@@ -1,7 +1,11 @@
 import { Link, useHistory } from "react-router-dom";
 import { Button } from "./Button";
+import { useContext } from "react";
+import { myContext } from "../context/myContext";
 
-export const UserPanel = ({ user, logout }) => {
+export const UserPanel = ({}) => {
+  const { user, logout } = useContext(myContext);
+
   return (
     <>
       {user.email ? (

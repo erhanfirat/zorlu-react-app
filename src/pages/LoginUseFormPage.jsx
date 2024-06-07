@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Button } from "../components/Button";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { useLocation, useHistory } from "react-router-dom";
+import { myContext } from "../context/myContext";
 
 const formDataInitial = {
   email: "",
@@ -11,7 +12,7 @@ const formDataInitial = {
   age: 0,
 };
 
-export const LoginUseFormPage = ({ setUser }) => {
+export const LoginUseFormPage = ({}) => {
   const {
     register,
     handleSubmit,
@@ -22,6 +23,8 @@ export const LoginUseFormPage = ({ setUser }) => {
     },
     mode: "all",
   });
+
+  const { setUser } = useContext(myContext);
 
   const location = useLocation();
   const history = useHistory();

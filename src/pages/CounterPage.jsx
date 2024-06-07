@@ -1,10 +1,18 @@
 import { useState } from "react";
 import { Counter } from "../components/Counter";
 import { Button } from "../components/Button";
-import { CounterWithReducer } from "../components/CounterWithReducer";
+import { useDispatch, useSelector } from "react-redux";
+import { setSayacActionCreator } from "../store/actions/globalActions";
 
 export const CounterPage = () => {
   const [show, setShow] = useState(true);
+  const counterInitial = useSelector((store) => store.global.sayac);
+  const dispath = useDispatch();
+
+  const saveSayac = (val) => {
+    // todo: dispatch ile redux a gönder
+    dispath(setSayacActionCreator(val));
+  };
 
   return (
     <div>
@@ -14,9 +22,13 @@ export const CounterPage = () => {
       </h2>
       <hr />
       {/* {show && <Counter />}
-      <hr />
-      <Counter hide={!show} /> */}
-      <CounterWithReducer />
+      <hr />*/}
+      <Counter
+        hide={!show}
+        counterInitial={counterInitial}
+        saveSayac={saveSayac}
+      />
+      {/* <CounterWithReducer /> */}
     </div>
   );
 };

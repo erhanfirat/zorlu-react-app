@@ -3,18 +3,13 @@ import { Button } from "./Button";
 
 let sayac = 1;
 
-export const Counter = ({ hide = false }) => {
+export const Counter = ({ hide = false, counterInitial = 0, saveSayac }) => {
   // STATES
-  const [count, setCount] = useState(0);
-  const [count2, setCount2] = useState(0);
+  const [count, setCount] = useState(counterInitial);
 
   const [user, setUser] = useState({ name: "", email: "" });
 
   // METHODS
-
-  const updateName = (newName) => {
-    setUser({ ...user, name: newName });
-  };
 
   const arttir = () => {
     // console.log("count ", count);
@@ -50,6 +45,10 @@ export const Counter = ({ hide = false }) => {
     // Count değişti, ve güncel değerinde
     console.log(`count ${count} değerine güncellendi!`);
 
+    if (saveSayac) {
+      saveSayac(count);
+    }
+
     return () => {
       // t2 de tetiklenir
       // Count değişecek ve eski değerinde şu an
@@ -80,7 +79,7 @@ export const Counter = ({ hide = false }) => {
           Azalt
         </Button>
       </div>
-      <br />
+      {/* <br />
       Count 2: {count2}
       <div>
         <Button className="btn" onClick={() => setCount2(count2 + 1)}>
@@ -89,7 +88,7 @@ export const Counter = ({ hide = false }) => {
         <Button className="btn" onClick={() => setCount2(count2 - 1)}>
           Azalt
         </Button>
-      </div>
+      </div> */}
     </div>
   );
 };

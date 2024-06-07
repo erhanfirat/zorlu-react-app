@@ -1,5 +1,5 @@
 // Outsource
-import { useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
 // Internal
 import { Header } from "./layout/Header";
@@ -11,28 +11,13 @@ import "./App.css";
 import { useLocalStorage } from "./hooks/useLocalStorage";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import { MyContextProvider, myContext } from "./context/myContext";
 
 function App() {
-  const [count, setCount] = useState(0);
-  const [user, setUser] = useState({ name: "Anonim", email: null });
-  const [theme, setTheme] = useLocalStorage("theme", "light");
-  const history = useHistory();
+  const { setUser, theme } = useContext(myContext);
 
   const moveToParent = (val) => {
     console.warn("Child componentten gelen value: ", val);
-  };
-
-  const login = (res) => setUser(res.data);
-
-  const logout = () => {
-    // ??
-    // remove token
-    // yönlendirme login veya anasayfa
-    // user state i resetlenmeli
-    localStorage.removeItem("token");
-    setUser({ name: "Anonim", email: null });
-
-    history.push("/");
   };
 
   useEffect(() => {
@@ -58,15 +43,11 @@ function App() {
   return (
     <div className={theme}>
       <Header
-        user={user}
         title="Merhaba ReactJS"
         count={13}
         moveToParent={moveToParent}
-        theme={theme}
-        setTheme={setTheme}
-        logout={logout}
       />
-      <PageBody user={user} setUser={setUser} />
+      <PageBody />
       <Footer />
     </div>
   );
