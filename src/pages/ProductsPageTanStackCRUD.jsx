@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setPageActionCreator } from "../store/actions/productActions";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
-import { queryClient } from "../main";
+import { queryClient } from "../api/queryClient";
 
 // https://620d69fb20ac3a4eedc05e3a.mockapi.io/api/products
 // products with CRUD

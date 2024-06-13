@@ -27,15 +27,16 @@ export const Header = ({ title, count, subscribed = false }) => {
   return (
     <>
       <header className="head">
-        <div>{storeTitle}</div>
+        <div data-testid="store-title">{storeTitle}</div>
         <Navigation />
         <div>
           <input
             type="text"
             value={searchText}
             onChange={searchChangeHandler}
+            data-testid="title-input"
           />
-          <Button onClick={() => dispatch(setTitleActionCreator(searchText))}>
+          <Button onClick={() => dispatch(setTitleActionCreator(searchText))} data-testid="change-title-btn">
             Change App Name
           </Button>
         </div>

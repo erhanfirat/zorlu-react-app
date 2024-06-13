@@ -12,4 +12,11 @@ export default defineConfig({
       plugins: [tailwindcss, autoprefixer],
     },
   },
+  test: {
+    environment: "jsdom",
+    setupFiles: ["./tests/setup.js"],
+    testMatch: ["./tests/**/*.test.jsx"],
+    globals: true,
+    css: true,
+  },
 });

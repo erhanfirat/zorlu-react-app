@@ -6,12 +6,13 @@ import { Header } from "./layout/Header";
 import { Footer } from "./layout/Footer";
 import { PageBody } from "./layout/PageBody";
 
-// Stylings
-import "./App.css";
 import { useLocalStorage } from "./hooks/useLocalStorage";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 import { MyContextProvider, myContext } from "./context/myContext";
+
+// Stylings
+import "./App.css";
 
 function App() {
   const { setUser, theme } = useContext(myContext);

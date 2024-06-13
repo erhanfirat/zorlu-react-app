@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { Button } from "./Button";
 
+import "./Counter.css";
+
 let sayac = 1;
 
 export const Counter = ({ hide = false, counterInitial = 0, saveSayac }) => {
@@ -64,10 +66,14 @@ export const Counter = ({ hide = false, counterInitial = 0, saveSayac }) => {
   // RETURN JSX
 
   return (
-    <div className={`counter ${hide ? "hidden" : ""}`}>
-      Counter: {count}
+    <div className={`counter ${hide ? "hidden" : ""}`} data-testid="counter-container">
+      Counter: <span data-testid="count-value">{count}</span>
       <div>
-        <Button onClick={arttir} title="Sayaç değerini 3 arttır">
+        <Button
+          onClick={arttir}
+          title="Sayaç değerini 3 arttır"
+          data-testid="counter-arttir-btn"
+        >
           Arttır
         </Button>
         <Button

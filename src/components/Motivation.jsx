@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { queryClient } from "../main";
 import { Button } from "./Button";
+import { queryClient } from "../api/queryClient";
 
 export const Motivation = () => {
   const { isPending, error, data, isLoading, isFetching, isRefetching } =

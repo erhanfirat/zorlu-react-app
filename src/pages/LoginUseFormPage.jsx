@@ -142,7 +142,9 @@ export const LoginUseFormPage = ({}) => {
           <div>
             <label></label>
             <div>
-              <Button type="submit">Login</Button>
+              <Button type="submit" data-cy="login-btn">
+                Login
+              </Button>
               <Button type="button" onClick={reset}>
                 Reset
               </Button>

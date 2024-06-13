@@ -106,7 +106,9 @@ export const LoginPage = () => {
           <div>
             <label></label>
             <div>
-              <Button type="submit">Login</Button>
+              <Button type="submit" data-testid="test-btn" data-cy="test-btn">
+                Login
+              </Button>
               <Button type="button" onClick={reset}>
                 Reset
               </Button>
