@@ -68,6 +68,7 @@ export const LoginUseFormPage = ({}) => {
             <input
               id="login-email"
               type="text"
+              data-cy="login-email"
               {...register("email", {
                 required: "Email alanı zorunludur.",
                 maxLength: {
@@ -91,6 +92,7 @@ export const LoginUseFormPage = ({}) => {
             <input
               id="login-password"
               type="password"
+              data-cy="login-password"
               {...register("password", {
                 required: "Password alanı zorunludur.",
                 minLength: {
@@ -115,6 +117,7 @@ export const LoginUseFormPage = ({}) => {
             <input
               id="login-age"
               type="number"
+              data-cy="login-age"
               {...register("age", {
                 required: "Age alanı zorunludur.",
                 min: {
@@ -136,6 +139,7 @@ export const LoginUseFormPage = ({}) => {
             <input
               id="login-remember"
               type="checkbox"
+              data-cy="login-remember"
               {...register("remember")}
             />
           </div>

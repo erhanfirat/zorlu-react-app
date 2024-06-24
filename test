@@ -1,0 +1,10 @@
+
+
+settings 
+  SettingPage
+  components
+    aComp
+    bComp
+  slice - state - store - context
+    stateData
+  style.css
